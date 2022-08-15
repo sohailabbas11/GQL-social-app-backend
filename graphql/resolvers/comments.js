@@ -1,8 +1,6 @@
 const { UserInputError, AuthenticationError } = require('apollo-server')
 const Post = require('../../models/Post')
 const checkAuth = require('../../util/check-auth')
-const checkauth = require('../../util/check-auth')
-
 
 module.exports = {
     Mutation: {
@@ -15,7 +13,7 @@ module.exports = {
                     }
                 })
             }
-            const post = await post.findById(postId)
+            const post = await Post.findById(postId)
 
             if (post) {
                 post.comments.unshift({
@@ -29,7 +27,7 @@ module.exports = {
         },
         async deleteComment(_, { postId, commentId }, context) {
             const username = checkAuth(context)
-            const post = post.findById(postId)
+            const post = Post.findById(postId)
 
             if (post) {
                 const commentIndex = post.comments.findIndex((c) => c.id === commentId)

@@ -1,13 +1,13 @@
 const gql = require('graphql-tag')
 
 module.exports = gql`
-type post{
+type Post{
     id:ID!
     body:String!
     createdAt:String!
     username:String!
-    comments:[comment]!
-    likes:[likes]!
+    comments:[Comment]!
+    likes:[Like]!
     likeCount:Int!
     commentCount:Int!
 }
@@ -36,7 +36,7 @@ type User{
     createdAt:String!
 }
 type Query{
-    getPosts:[post]
+    getPosts:[Post]
     getPost(postId:ID!):Post
     
 }
@@ -47,7 +47,7 @@ type Mutation{
     deletePost(postId:ID!):String!
     createComment(postId:String!, body:String!): Post!
     deleteComment(postId:ID!, commentId:ID!): Post!
-    likePost(postId:Id!): Post!
+    likePost(postId:ID!): Post!
 }
 
 `
